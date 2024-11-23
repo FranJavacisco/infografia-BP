@@ -1,0 +1,109 @@
+<svg viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo -->
+    <rect width="800" height="1000" fill="#f8f9fc" />
+
+    <!-- Título Principal -->
+    <rect x="50" y="30" width="700" height="80" fill="#4a5568" rx="10" />
+    <text x="400" y="80" text-anchor="middle" font-family="Arial" font-size="24" fill="white" font-weight="bold">
+        Buenas Prácticas de Seguridad en Smart Contracts
+    </text>
+    <text x="400" y="100" text-anchor="middle" font-family="Arial" font-size="16" fill="#cbd5e0">
+        Implementación segura con OpenZeppelin
+    </text>
+
+    <!-- Sección 1: Control de Acceso -->
+    <g transform="translate(50, 130)">
+        <rect width="340" height="200" fill="white" stroke="#e2e8f0" rx="8" />
+        <rect width="340" height="40" fill="#4299e1" rx="8" />
+        <text x="20" y="25" font-family="Arial" font-size="16" fill="white" font-weight="bold">1. Control de
+            Acceso</text>
+        <text x="20" y="70" font-family="Arial" font-size="14" fill="#4a5568">
+            <tspan x="20" dy="0">• Usar Ownable para funciones admin</tspan>
+            <tspan x="20" dy="25">• Implementar AccessControl para roles</tspan>
+            <tspan x="20" dy="25">• Definir roles específicos</tspan>
+            <tspan x="20" dy="25">• Utilizar modificadores onlyRole</tspan>
+            <tspan x="20" dy="25">• Documentar permisos claramente</tspan>
+        </text>
+    </g>
+
+    <!-- Sección 2: Patrones de Seguridad -->
+    <g transform="translate(410, 130)">
+        <rect width="340" height="200" fill="white" stroke="#e2e8f0" rx="8" />
+        <rect width="340" height="40" fill="#48bb78" rx="8" />
+        <text x="20" y="25" font-family="Arial" font-size="16" fill="white" font-weight="bold">2. Patrones de
+            Seguridad</text>
+        <text x="20" y="70" font-family="Arial" font-size="14" fill="#4a5568">
+            <tspan x="20" dy="0">• Implementar Pausable</tspan>
+            <tspan x="20" dy="25">• Usar SafeMath para cálculos</tspan>
+            <tspan x="20" dy="25">• Checks-Effects-Interactions</tspan>
+            <tspan x="20" dy="25">• ReentrancyGuard para llamadas</tspan>
+            <tspan x="20" dy="25">• Validación exhaustiva de inputs</tspan>
+        </text>
+    </g>
+
+    <!-- Sección 3: Estándares ERC -->
+    <g transform="translate(50, 350)">
+        <rect width="340" height="200" fill="white" stroke="#e2e8f0" rx="8" />
+        <rect width="340" height="40" fill="#ed8936" rx="8" />
+        <text x="20" y="25" font-family="Arial" font-size="16" fill="white" font-weight="bold">3. Estándares ERC</text>
+        <text x="20" y="70" font-family="Arial" font-size="14" fill="#4a5568">
+            <tspan x="20" dy="0">• Heredar de IERC interfaces</tspan>
+            <tspan x="20" dy="25">• Implementar todos los eventos</tspan>
+            <tspan x="20" dy="25">• Usar ERC721Enumerable</tspan>
+            <tspan x="20" dy="25">• Validar URIs en metadata</tspan>
+            <tspan x="20" dy="25">• Seguir EIPs actualizados</tspan>
+        </text>
+    </g>
+
+    <!-- Sección 4: Testing -->
+    <g transform="translate(410, 350)">
+        <rect width="340" height="200" fill="white" stroke="#e2e8f0" rx="8" />
+        <rect width="340" height="40" fill="#805ad5" rx="8" />
+        <text x="20" y="25" font-family="Arial" font-size="16" fill="white" font-weight="bold">4. Testing y
+            Auditoría</text>
+        <text x="20" y="70" font-family="Arial" font-size="14" fill="#4a5568">
+            <tspan x="20" dy="0">• Test unitarios exhaustivos</tspan>
+            <tspan x="20" dy="25">• Pruebas de integración</tspan>
+            <tspan x="20" dy="25">• Usar herramientas de análisis</tspan>
+            <tspan x="20" dy="25">• Auditorías de seguridad</tspan>
+            <tspan x="20" dy="25">• Documentar test cases</tspan>
+        </text>
+    </g>
+
+    <!-- Código de Ejemplo -->
+    <g transform="translate(50, 570)">
+        <rect width="700" height="225" fill="#2d3748" rx="8" />
+        <text x="20" y="40" font-family="monospace" font-size="14" fill="#cbd5e0">
+            <tspan x="20" dy="0">// Ejemplo de implementación segura</tspan>
+            <tspan x="20" dy="25" fill="#48bb78">contract</tspan>
+            <tspan fill="#f6e05e"> SecureToken </tspan>
+            <tspan fill="#cbd5e0">is ERC721, Pausable, AccessControl {</tspan>
+            <tspan x="20" dy="25" fill="#48bb78"> bytes32</tspan>
+            <tspan fill="#cbd5e0"> public constant MINTER_ROLE = keccak256("MINTER_ROLE");</tspan>
+            <tspan x="20" dy="25" fill="#48bb78"> constructor</tspan>
+            <tspan fill="#cbd5e0">() ERC721("SecureToken", "SCRT") {</tspan>
+            <tspan x="20" dy="25" fill="#cbd5e0"> _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);</tspan>
+            <tspan x="20" dy="25"> _grantRole(MINTER_ROLE, msg.sender);</tspan>
+            <tspan x="20" dy="25"> }</tspan>
+            <tspan x="20" dy="25" fill="#48bb78"> function</tspan>
+            <tspan fill="#f6e05e"> safeMint</tspan>
+            <tspan fill="#cbd5e0">(address to) public onlyRole(MINTER_ROLE) {</tspan>
+            <tspan x="20" dy="25" fill="#cbd5e0"> require(!paused(), "Minting is paused");</tspan>
+            <tspan x="20" dy="25"> _safeMint(to, tokenId);</tspan>
+            <tspan x="20" dy="25"> }</tspan>
+        </text>
+    </g>
+
+    <!-- Notas Importantes -->
+    <g transform="translate(50, 800)">
+        <rect width="700" height="140" fill="#fff5f5" stroke="#feb2b2" rx="8" />
+        <text x="20" y="30" font-family="Arial" font-size="16" fill="#c53030" font-weight="bold">⚠️ Consideraciones
+            Importantes:</text>
+        <text x="20" y="60" font-family="Arial" font-size="14" fill="#4a5568">
+            <tspan x="20" dy="0">• Mantener las dependencias actualizadas</tspan>
+            <tspan x="20" dy="25">• Seguir el principio de menor privilegio</tspan>
+            <tspan x="20" dy="25">• Implementar mecanismos de recuperación</tspan>
+            <tspan x="20" dy="25">• Realizar auditorías de seguridad regulares</tspan>
+        </text>
+    </g>
+</svg>
